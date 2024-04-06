@@ -11,10 +11,10 @@ export type Movie = {
     imageUrl: string;
     imdbRating: string;
     imdbVotes: string;
-    imdbID: ImdbId;
+    imdbId: ImdbId;
 }
 
-const from = (title: string, year: string, runtime: string, genre: string, director: string, actors: string[], plot: string, imageUrl: string, imdbRating: string, imdbVotes: string, imdbID: ImdbId): Movie => ({
+const from = (title: string, year: string, runtime: string, genre: string, director: string, actors: string[], plot: string, imageUrl: string, imdbRating: string, imdbVotes: string, imdbId: ImdbId): Movie => ({
     title,
     year,
     runtime,
@@ -25,7 +25,7 @@ const from = (title: string, year: string, runtime: string, genre: string, direc
     imageUrl,
     imdbRating,
     imdbVotes,
-    imdbID
+    imdbId
 });
 
 export const Movie = {

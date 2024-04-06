@@ -45,7 +45,7 @@ describe('OmdbMovieV1Mapper', () => {
             expect(result.imageUrl).toEqual(Poster);
             expect(result.imdbRating).toEqual(imdbRating);
             expect(result.imdbVotes).toEqual(imdbVotes);
-            expect(result.imdbID).toEqual(imdbID);
+            expect(result.imdbId).toEqual(imdbID);
         });
     });
 });
