@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
+import {RouterProvider} from "react-router-dom";
+import {router} from "./router";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 const AppContainer = styled.div`
     display: flex;
@@ -9,10 +12,14 @@ const AppContainer = styled.div`
     background-color: #f0f0f0;
 `;
 
+const queryClient = new QueryClient();
+
 function App() {
     return (
         <AppContainer>
-            <h1>Hello World!</h1>
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router}/>
+            </QueryClientProvider>
         </AppContainer>
     );
 }
