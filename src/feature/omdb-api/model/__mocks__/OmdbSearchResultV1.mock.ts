@@ -21,5 +21,4 @@ const baseMock: OmdbSearchResultV1 = {
   totalResults: "2"
 };
 
-
 export const createOmdbSearchResult1Mock = createMockCreator(baseMock);

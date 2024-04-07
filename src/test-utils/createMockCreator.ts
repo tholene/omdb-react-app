@@ -1,7 +1,7 @@
 export const createMockCreator =
-    <T>(baseMock: T) =>
-        (partialMock: Partial<T> = {}): T => (
-            {
-                ...baseMock,
-                ...partialMock
-            });
+  <T>(baseMock: T) =>
+    (partialMock: Partial<T> = {}): T => (
+      {
+        ...baseMock,
+        ...partialMock
+      });

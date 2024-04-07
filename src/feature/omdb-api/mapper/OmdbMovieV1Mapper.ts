@@ -20,4 +20,3 @@ const toMovie = (omdbMovie: OmdbMovieV1): Movie => Movie.from(
 export const OmdbMovieV1Mapper = {
   toMovie
 };
-

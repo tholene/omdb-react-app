@@ -1,5 +1,5 @@
-import {ImdbId} from "../../../common/model/ImdbId";
+import { ImdbId } from "../../../common/model/ImdbId";
 
 export type MovieDetailsUrlParams = {
-    id: ImdbId;
+  id: ImdbId;
 }

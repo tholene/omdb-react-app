@@ -45,5 +45,4 @@ describe("MovieService", () => {
       expect(result.imdbId).toEqual(imdbID);
     });
   });
-})
-;
+});

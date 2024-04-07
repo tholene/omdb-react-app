@@ -20,6 +20,7 @@ const getMovieByImdbId = async (imdbId: ImdbId): Promise<OmdbMovieV1> => {
   const { data } = await axios.get(`${baseUrl()}&i=${imdbId}`);
   return data;
 };
+
 export const OmdbRestServiceV1 = {
   queryMovies,
   getMovieByImdbId
