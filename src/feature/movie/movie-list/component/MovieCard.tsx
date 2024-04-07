@@ -12,13 +12,15 @@ const DEFAULT_ELEVATION = 1;
 const HOVER_ELEVATION = 20;
 
 const ROTATION_DEGREES = 5;
+
 const getRandomRotation = () => Math.floor(Math.random() * (2 * ROTATION_DEGREES + 1)) - ROTATION_DEGREES;
 
 export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Card elevation={isHovered ? HOVER_ELEVATION : DEFAULT_ELEVATION}
+    <Card aria-label={movie.title}
+          elevation={isHovered ? HOVER_ELEVATION : DEFAULT_ELEVATION}
           sx={{
             transition: "transform 0.2s",
             transform: `scale(${isHovered ? 1.1 : 1}) rotate(${isHovered ? getRandomRotation() : 0}deg)`,
