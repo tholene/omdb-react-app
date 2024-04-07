@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { Movie } from "../../model/Movie";
-import { Card, CardMedia } from "@mui/material";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { MovieListUtil } from "../util/MovieListUtil";
 import { Link } from "react-router-dom";
 
@@ -30,6 +30,10 @@ export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
           onMouseOut={() => setIsHovered(false)}>
       <Link to={MovieListUtil.getDetailsLink(movie)}>
         <CardMedia src={movie.imageUrl} component="img" alt={movie.title} />
+        <CardContent>
+          <Typography variant="subtitle1">{movie.title}</Typography>
+          <Typography variant="caption">{movie.year}</Typography>
+        </CardContent>
       </Link>
     </Card>
   );

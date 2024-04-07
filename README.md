@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+# Omdb React app
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Design choices
+The general folder structure for each part of the application is as follows:
+- component: simple components that consume props and render UI
+- container: more complex components that typically feed components with data and handle user interactions
+- hook: custom hooks that encapsulate logic
+- model: data models and constants
+- service: functions that typically interact with external services
+- page: top-level components that represent a page in the application
+
+I decided to consume the Omdb API through one RestService that communicates with the API and returns the data as received by the API. This in turn is used by the MovieService, my feature specific service, and maps it to my own model. This way, if I want to change something in my movie feature I don't have to worry about the Omdb API contract. Vice versa, if the Omdb API changes I just need to update my mapper.
+
+Mock creators are available and especially useful for tests. These are all based of one base mock and can then easily be tweaked for any specific test purpose. This is a way of working that I have grown to appreciate deeply.
+
+While not everything is covered by tests due to time constraints, I decided to write a few diverse tests. There is at least one test for at least one service, hook and component (container really).
 
 ## Available Scripts
 
