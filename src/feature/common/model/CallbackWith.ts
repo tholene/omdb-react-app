@@ -1,0 +1,1 @@
+export type CallbackWith<T, R = void> = (value: T) => R;

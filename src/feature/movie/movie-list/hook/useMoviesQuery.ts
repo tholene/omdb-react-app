@@ -3,14 +3,14 @@ import { MovieService } from "../../service/MovieService";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { QueryKey } from "../../../common/model/QueryKey";
 
-type UseMovieSearchHookReturn = {
+export type UseMoviesQueryHookReturn = {
   movies: Movie[];
   fetchNextPage: () => void;
   hasNextPage: boolean;
   isLoading: boolean;
 }
 
-export const useMovieSearch = (query: string): UseMovieSearchHookReturn => {
+export const useMoviesQuery = (query: string): UseMoviesQueryHookReturn => {
   const queryFn = async ({ pageParam = 1 }: {
     pageParam?: number
   }): Promise<Movie[]> => MovieService.queryMovies(query.trim(), pageParam);

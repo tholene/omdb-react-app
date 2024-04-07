@@ -1,59 +1,42 @@
-import { ChangeEvent, FC, KeyboardEventHandler, useCallback, useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { Box } from "@mui/material";
-import { useMovieSearch } from "../hook/useMovieSearch";
-import { MovieListUtil } from "../util/MovieListUtil";
-
-const SEARCH_TERM_PARAM = "q";
+import React, { FC } from "react";
+import { Box, Button, CircularProgress, Grid } from "@mui/material";
+import { useMoviesSearch } from "../hook/useMoviesSearch";
+import { SearchInput } from "../component/SearchInput";
+import { MovieGrid } from "../component/MovieGrid";
 
 export const MovieListContainer: FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [typedSearchTerm, setTypedSearchTerm] = useState<string>("");
-  const searchTerm = searchParams.get(SEARCH_TERM_PARAM) ?? "";
-
-  const { movies, fetchNextPage, hasNextPage, isLoading } = useMovieSearch(searchTerm);
-
-  useEffect(() => {
-    if (searchTerm) {
-      setTypedSearchTerm(searchTerm);
-    }
-  }, []);
-
-  const updateSearchParam = useCallback((query: string) => setSearchParams(
-    new URLSearchParams({ [SEARCH_TERM_PARAM]: query })
-  ), []);
-
-  const handleOnChange = useCallback(
-    (evt: ChangeEvent<HTMLInputElement>) => {
-      const value = evt.target.value.trimStart();
-      setTypedSearchTerm(value);
-    },
-    []
-  );
-
-  const handleOnKeyDown: KeyboardEventHandler<HTMLInputElement> = useCallback((evt) => {
-    if (evt.key === "Enter") {
-      updateSearchParam(typedSearchTerm);
-    }
-  }, [typedSearchTerm, updateSearchParam]);
+  const {
+    value,
+    onChange,
+    onKeyDown,
+    triggerSearch,
+    movies,
+    isLoading,
+    hasNextPage,
+    fetchNextPage
+  } = useMoviesSearch();
 
   return (
-    <Box>
-      <input type="text" placeholder="Search for a movie title" value={typedSearchTerm ?? undefined}
-             onChange={handleOnChange} onKeyDown={handleOnKeyDown} />
+    <Grid container spacing={4} padding={4}>
+      <Grid item xs={6} mx="25%">
+        <SearchInput value={value} onChange={onChange} onKeyDown={onKeyDown}
+                     onSearch={triggerSearch} />
+      </Grid>
 
-      <button onClick={() => updateSearchParam(typedSearchTerm)}>Search</button>
+      <MovieGrid movies={movies} />
 
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.imdbId}>
-            <Link to={MovieListUtil.getDetailsLink(movie)}>{movie.title}</Link>
-          </li>
-        ))}
-      </ul>
-
-      {isLoading && <p>Loading...</p>}
-      {hasNextPage && !isLoading && <button onClick={fetchNextPage}>Load more</button>}
-    </Box>
+      <Grid item xs={12}>
+        <Box display="flex" justifyContent="center">
+          {isLoading && <CircularProgress />}
+          {hasNextPage && !isLoading &&
+            (
+              <Button variant="contained" disableElevation onClick={fetchNextPage}>
+                Load more
+              </Button>
+            )
+          }
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
