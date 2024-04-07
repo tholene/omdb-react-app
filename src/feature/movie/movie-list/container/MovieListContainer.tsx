@@ -18,7 +18,7 @@ export const MovieListContainer: FC = () => {
 
   return (
     <Grid container spacing={4} padding={4}>
-      <Grid item xs={6} mx="25%">
+      <Grid item xs={12} md={6} mx={{ md: "25%" }}>
         <SearchInput value={value} onChange={onChange} onKeyDown={onKeyDown}
                      onSearch={triggerSearch} />
       </Grid>

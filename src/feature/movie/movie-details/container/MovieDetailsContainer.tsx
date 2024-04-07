@@ -3,6 +3,7 @@ import { useMovieDetails } from "../hook/useMovieDetails";
 import { Box, CircularProgress, Grid, Stack, Typography } from "@mui/material";
 import { MovieNotFound } from "../component/MovieNotFound";
 import { Link } from "react-router-dom";
+import { RoutePath } from "../../../common/model/RoutePath";
 
 export const MovieDetailsContainer: FC = () => {
   const { movie, isLoading } = useMovieDetails();
@@ -18,7 +19,7 @@ export const MovieDetailsContainer: FC = () => {
   return (
     <Grid container spacing={2} padding={4}>
       <Grid item xs={12}>
-        <Link to="/">Back to search</Link>
+        <Link to={RoutePath.MOVIE_LIST}>Back to search</Link>
       </Grid>
 
       <Grid item xs={12}>
