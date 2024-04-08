@@ -19,7 +19,7 @@ export const MovieDetailsContainer: FC = () => {
   return (
     <Grid container spacing={2} padding={4}>
       <Grid item xs={12}>
-        <Link to={RoutePath.MOVIE_LIST}>Back to search</Link>
+        <Link to={RoutePath.ROOT}>Back to search</Link>
       </Grid>
 
       <Grid item xs={12}>
