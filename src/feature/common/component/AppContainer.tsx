@@ -13,6 +13,11 @@ const GradientBackground = styled.div`
 const StyledContainer = styled(Container)`
     height: 100%;
     overflow: scroll;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 export const AppContainer: FC<PropsWithChildren> = (props) => (
