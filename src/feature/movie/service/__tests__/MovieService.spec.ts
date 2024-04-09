@@ -2,6 +2,7 @@ import { createOmdbMovieV1Mock } from "../../../omdb-api/model/__mocks__/OmdbMov
 import { OmdbRestServiceV1 } from "../../../omdb-api/service/OmdbRestServiceV1";
 import { MovieService } from "../MovieService";
 import { createOmdbSearchResult1Mock } from "../../../omdb-api/model/__mocks__/OmdbSearchResultV1.mock";
+import { createOmdbMovieResultV1Mock } from "../../../omdb-api/model/__mocks__/OmdbMovieResultV1.mock";
 
 describe("MovieService", () => {
   describe("queryMovies", () => {
@@ -41,8 +42,24 @@ describe("MovieService", () => {
 
       // Assert
       expect(getMovieByImdbIdSpy).toHaveBeenCalledWith(imdbID);
-      expect(result.director).toEqual(Director);
-      expect(result.imdbId).toEqual(imdbID);
+      expect(result?.director).toEqual(Director);
+      expect(result?.imdbId).toEqual(imdbID);
     });
+  });
+
+  it("should return undefined if no movie was found", async () => {
+    // Arrange
+    const imdbID = "A";
+    const Error = "Hubba Error";
+    const getMovieByImdbIdSpy = jest.spyOn(OmdbRestServiceV1, "getMovieByImdbId").mockResolvedValue(createOmdbMovieResultV1Mock({
+      Error
+    }));
+
+    // Act
+    const result = await MovieService.getMovieByImdbId(imdbID);
+
+    // Assert
+    expect(getMovieByImdbIdSpy).toHaveBeenCalledWith(imdbID);
+    expect(result).toBeUndefined();
   });
 });
